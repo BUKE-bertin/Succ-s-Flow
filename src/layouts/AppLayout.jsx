@@ -243,7 +243,7 @@ export const AppLayout = () => {
             <p
               className={`hidden md:block text-[14px] ${isDark ? "text-zinc-400" : "text-slate-500"}`}
             >
-              Bonjour 👋 —{" "}
+              Bonjour —{" "}
               <span
                 className="font-medium"
                 style={{ color: isDark ? "#e4e4e7" : "#334155" }}
