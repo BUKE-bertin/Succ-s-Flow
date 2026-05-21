@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-primary: #4F46E5;
+  --color-primary-dark: #4338CA;
+  --color-primary-light: #6366F1;
+  --color-success: #10B981;
+  --color-success-dark: #059669;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-dark-bg: #09090b;
+  --color-card-bg: #18181b;
+  --color-card-hover: #27272a;
+}
+
+/* ===== MODE SOMBRE (défaut) ===== */
+:root {
+  font-family: var(--font-sans);
+  --app-bg: #09090b;
+  --app-text: #f4f4f5;
+  --app-text-secondary: #a1a1aa;
+  --app-card: #111113;
+  --app-card-hover: #1a1a1f;
+  --app-border: #27272a;
+  --app-sidebar: #0c0c0e;
+  --app-muted: #71717a;
+  --app-input: #18181b;
+  --app-input-border: #3f3f46;
+  --app-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  --app-shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  color-scheme: dark;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+}
+
+/* ===== MODE CLAIR ===== */
+.light {
+  --app-bg: #F8F9FC;
+  --app-text: #1a1a2e;
+  --app-text-secondary: #64748b;
+  --app-card: #ffffff;
+  --app-card-hover: #f8fafc;
+  --app-border: #e2e8f0;
+  --app-sidebar: #ffffff;
+  --app-muted: #64748b;
+  --app-input: #ffffff;
+  --app-input-border: #cbd5e1;
+  --app-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --app-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  color-scheme: light;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--app-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* ===== SCROLLBAR PREMIUM ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--app-border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--app-muted);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.35s ease-out forwards;
+}
+
+.animate-count-up {
+  animation: count-up 0.5s ease-out forwards;
+}
+
+/* ===== COMPOSANTS RÉUTILISABLES ===== */
+
+/* Carte avec ombre douce (Soft UI Evolution - Style #19) */
+.card {
+  background-color: var(--app-card);
+  border: 1px solid var(--app-border);
+  border-radius: 16px;
+  box-shadow: var(--app-shadow);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: var(--app-shadow-md);
+  border-color: color-mix(in srgb, var(--app-border) 80%, var(--app-text) 20%);
+}
+
+/* Boutons avec cursor-pointer et transitions (UUPM checklist) */
+button, a, [role="button"], select, input[type="submit"], input[type="button"] {
+  cursor: pointer;
+}
+
+/* Focus visible pour accessibilité clavier (WCAG AA) */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced Motion (UUPM checklist) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== UTILITAIRES THÈME ===== */
+.theme-bg { background-color: var(--app-bg); }
+.theme-card { background-color: var(--app-card); }
+.theme-sidebar { background-color: var(--app-sidebar); }
+.theme-text { color: var(--app-text); }
+.theme-text-secondary { color: var(--app-text-secondary); }
+.theme-muted { color: var(--app-muted); }
+.theme-border { border-color: var(--app-border); }
+
+.theme-transition {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ===== TYPOGRAPHIE PREMIUM ===== */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: var(--app-text);
+}
